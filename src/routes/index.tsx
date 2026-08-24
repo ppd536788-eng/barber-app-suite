@@ -294,60 +294,25 @@ function Index() {
                 <p className="mt-1 text-sm font-semibold text-primary">PAGAMENTO ÚNICO</p>
 
                 <p className="mt-6 text-2xl font-semibold tracking-tight leading-snug">
-                  Seu cliente ganha praticidade.
+                  SEU CLIENTE GANHA PRATICIDADE.
                   <br />
-                  Você ganha tempo.
-                </p>
-                <p className="mt-3 text-base font-medium">
-                  Um app pensado para facilitar a vida do cliente e do barbeiro.
+                  VOCÊ GANHA TEMPO.
                 </p>
                 <p className="mt-3 text-base text-muted-foreground">
-                  O APP PRO vai além de apresentar sua barbearia. Ele ajuda a organizar o caminho
-                  até o agendamento e reduz parte das perguntas e tarefas repetitivas que chegam
-                  pelo WhatsApp.
+                  Um app pensado para facilitar o atendimento da sua barbearia, com agenda e
+                  automação de WhatsApp.
                 </p>
 
-                <div className="mt-6 rounded-2xl bg-ink p-6 text-ink-foreground">
-                  <p className="text-sm font-semibold text-primary-foreground/80">
-                    VOCÊ NÃO ESTÁ INVESTINDO SÓ EM UM APP.
-                  </p>
-                  <p className="mt-2 text-base">
-                    Você está investindo em uma forma mais simples de atender seus clientes e
-                    deixar tarefas repetitivas mais organizadas.
-                  </p>
-                  <p className="mt-4 text-xl font-semibold tracking-tight leading-snug">
-                    Mais facilidade para o cliente.
-                    <br />
-                    Mais tempo para o barbeiro.
-                  </p>
-                </div>
-
-                <div className="mt-6 rounded-2xl bg-surface px-5 py-5">
-                  <p className="text-sm font-semibold">VOCÊ SABE COMO É.</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {["Tem horário hoje?", "Quanto é o corte?", "Quais serviços vocês fazem?", "Tem vaga amanhã?", "Qual horário?"].map((msg) => (
-                      <span
-                        key={msg}
-                        className="rounded-full bg-background px-3 py-1.5 text-sm text-muted-foreground shadow-sm"
-                      >
-                        {msg}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="mt-4 text-base text-muted-foreground">
-                    Você está atendendo. Está cortando cabelo. E ainda precisa parar para responder
-                    mensagens.
-                  </p>
-                  <p className="mt-4 text-lg font-semibold">Seu tempo vale mais.</p>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Menos perguntas repetitivas. Menos interrupções. Mais organização. Mais
-                    praticidade.
-                  </p>
-                </div>
-
-                <p className="mt-7 eyebrow">O que está incluído</p>
+                <p className="mt-7 eyebrow">O QUE VEM NO APP PRO</p>
                 <ul className="mt-3 space-y-2.5 text-base">
-                  {proInclui.map((i) => (
+                  {[
+                    "Aplicativo personalizado da sua barbearia",
+                    "Agenda e agendamento",
+                    "Automação de WhatsApp",
+                    "Serviços, preços e galeria",
+                    "Localização e informações da barbearia",
+                    "WhatsApp integrado",
+                  ].map((i) => (
                     <li key={i} className="flex gap-2.5">
                       <Check />
                       <span>{i}</span>
@@ -355,76 +320,29 @@ function Index() {
                   ))}
                 </ul>
 
-                <p className="mt-7 eyebrow">Como cada item ajuda</p>
-                <ul className="mt-3 space-y-3 text-base text-muted-foreground">
-                  <li>
-                    <span className="font-medium text-foreground">Agenda:</span> seu cliente pode
-                    consultar horários e agendar de forma mais organizada.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Automação de WhatsApp:</span>{" "}
-                    ajuda a organizar a comunicação e reduzir parte do trabalho repetitivo.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">App próprio:</span> seu cliente
-                    encontra sua barbearia, seus serviços e suas informações em um só lugar.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Serviços e preços:</span> seu
-                    cliente encontra as principais informações sem precisar perguntar tudo.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Galeria:</span> mostre o
-                    trabalho e o estilo da sua barbearia.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Localização:</span> facilite
-                    para o cliente encontrar sua barbearia.
-                  </li>
-                </ul>
-
-                <div className="mt-7 rounded-2xl bg-surface px-5 py-5">
-                  <p className="text-sm font-semibold">ANTES E DEPOIS</p>
-                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground">ANTES</p>
-                      <ol className="mt-2 space-y-1 text-sm text-muted-foreground">
-                        <li>Cliente pergunta</li>
-                        <li>Barbeiro responde</li>
-                        <li>Cliente pergunta novamente</li>
-                        <li>Barbeiro verifica horário</li>
-                        <li>Combina agendamento</li>
-                      </ol>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-primary">DEPOIS</p>
-                      <ol className="mt-2 space-y-1 text-sm text-muted-foreground">
-                        <li>Cliente entra no app</li>
-                        <li>Encontra informações</li>
-                        <li>Consulta horários</li>
-                        <li>Agenda</li>
-                        <li>WhatsApp quando precisar</li>
-                      </ol>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-base text-muted-foreground">
-                    Menos idas e vindas. Mais praticidade para o cliente. Mais tempo para o barbeiro.
-                  </p>
-                </div>
+                <p className="mt-7 text-xl font-semibold tracking-tight leading-snug">
+                  MENOS MENSAGENS.
+                  <br />
+                  MENOS INTERRUPÇÕES.
+                  <br />
+                  MAIS TEMPO PARA ATENDER.
+                </p>
+                <p className="mt-3 text-base text-muted-foreground">
+                  Seu cliente encontra as informações e pode agendar com mais facilidade, enquanto
+                  você reduz parte das tarefas repetitivas do dia a dia.
+                </p>
 
                 <div className="mt-6 rounded-2xl bg-surface px-5 py-4">
                   <p className="text-sm font-semibold">ENTREGA ESTIMADA EM 1 A 3 SEMANAS</p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    O APP PRO leva mais tempo porque envolve mais configurações e personalizações,
-                    incluindo agenda e automação de WhatsApp. O prazo começa após o recebimento das
-                    informações e materiais necessários.
+                    O prazo começa após o recebimento das informações e materiais necessários.
                   </p>
                 </div>
 
-                <p className="mt-7 eyebrow">Para quem é</p>
+                <p className="mt-7 eyebrow">PARA QUEM É</p>
                 <p className="mt-2 text-base text-muted-foreground">
-                  Para o barbeiro que já tem sua barbearia funcionando e quer oferecer uma
-                  experiência mais completa para seus clientes, com agenda e automação de WhatsApp.
+                  Para barbeiros que querem uma experiência mais completa para seus clientes e uma
+                  rotina mais prática.
                 </p>
 
                 <div className="mt-8">
@@ -441,23 +359,6 @@ function Index() {
                   </p>
                 </div>
               </article>
-            </div>
-
-            {/* CTA APÓS OS PLANOS */}
-            <div className="mt-16 text-center">
-              <h3 className="text-2xl font-semibold tracking-tight">Ainda não sabe qual escolher?</h3>
-              <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground">
-                Conte para a gente como funciona sua barbearia. Podemos explicar qual opção faz mais
-                sentido para você.
-              </p>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-block rounded-full bg-whatsapp px-7 py-3.5 text-base font-medium text-whatsapp-foreground transition-opacity hover:opacity-85"
-              >
-                FALAR COM A TECHBARBERSHOP
-              </a>
             </div>
           </div>
         </section>
