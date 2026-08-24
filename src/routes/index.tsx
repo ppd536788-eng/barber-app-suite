@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import heroApps from "@/assets/hero-apps.jpg";
 import appShowcase from "@/assets/app-showcase.jpg";
 import { Reveal } from "@/components/Reveal";
+import { PhoneShowcase } from "@/components/PhoneShowcase";
 
 export const Route = createFileRoute("/")({
   head: () => ({
