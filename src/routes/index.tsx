@@ -199,7 +199,7 @@ function Index() {
                 Abrir o aplicativo da Dom Barbearia ›
               </a>
             </div>
-            <Reveal className="rounded-3xl bg-surface p-6">
+            <PhoneShowcase className="rounded-3xl bg-surface p-6">
               <img
                 src={appShowcase}
                 alt="Aplicativo de barbearia desenvolvido pela TechBarbershop em um smartphone"
@@ -208,7 +208,7 @@ function Index() {
                 loading="lazy"
                 className="mx-auto w-full max-w-sm"
               />
-            </Reveal>
+            </PhoneShowcase>
           </div>
         </section>
 
