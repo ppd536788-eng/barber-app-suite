@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroApps from "@/assets/hero-apps.jpg";
 import appShowcase from "@/assets/app-showcase.jpg";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -151,13 +152,15 @@ function Index() {
               </a>
             </div>
           </div>
-          <img
-            src={heroApps}
-            alt="Telas de um aplicativo de barbearia desenvolvido pela TechBarbershop"
-            width={1600}
-            height={1008}
-            className="mx-auto mt-12 w-full max-w-4xl"
-          />
+          <Reveal className="mt-12">
+            <img
+              src={heroApps}
+              alt="Telas de um aplicativo de barbearia desenvolvido pela TechBarbershop"
+              width={1600}
+              height={1008}
+              className="mx-auto w-full max-w-4xl"
+            />
+          </Reveal>
         </section>
 
         {/* EXEMPLO — APP FEITO PELA MARCA */}
@@ -179,7 +182,6 @@ function Index() {
                   "Serviços e preços (Corte Social, Degradê, Barba)",
                   "Galeria de fotos e página Sobre",
                   "Localização e horários de atendimento",
-                  "Botão de WhatsApp em todas as telas",
                 ].map((i) => (
                   <li key={i} className="flex gap-2.5">
                     <Check />
@@ -196,7 +198,7 @@ function Index() {
                 Abrir o aplicativo da Dom Barbearia ›
               </a>
             </div>
-            <div className="rounded-3xl bg-surface p-6">
+            <Reveal className="rounded-3xl bg-surface p-6">
               <img
                 src={appShowcase}
                 alt="Aplicativo de barbearia desenvolvido pela TechBarbershop em um smartphone"
@@ -205,7 +207,7 @@ function Index() {
                 loading="lazy"
                 className="mx-auto w-full max-w-sm"
               />
-            </div>
+            </Reveal>
           </div>
         </section>
 
