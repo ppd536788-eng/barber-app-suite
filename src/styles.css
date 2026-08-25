@@ -172,12 +172,19 @@
   animation-delay: 1s;
 }
 
+.phone-tilt {
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal.is-visible,
   .phone-showcase,
   .phone-showcase.is-visible,
-  .phone-showcase.is-visible .phone-float {
+  .phone-showcase.is-visible .phone-float,
+  .phone-tilt {
     opacity: 1;
     animation: none;
     transform: none;
