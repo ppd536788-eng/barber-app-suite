@@ -1,8 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import heroApps from "@/assets/hero-apps.jpg";
 import appShowcase from "@/assets/app-showcase.jpg";
 import { Reveal } from "@/components/Reveal";
 import { PhoneShowcase } from "@/components/PhoneShowcase";
+import { MobileNav } from "@/components/MobileNav";
+import { StickyWhatsApp } from "@/components/StickyWhatsApp";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { ComparisonMobile } from "@/components/ComparisonMobile";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const OG_IMAGE =
+  "https://project--52727ae6-8cd6-44f4-b582-2bcb61daaa24.lovable.app/og-image.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -11,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Planos APP ESSENCIAL (R$50/mês) e APP PRO (R$150/mês): aplicativo próprio, serviços, galeria, WhatsApp, agenda e automação.",
+          "Planos APP ESSENCIAL (R$50) e APP PRO (R$150): aplicativo próprio, serviços, galeria, WhatsApp, agenda e automação.",
       },
       {
         property: "og:title",
@@ -20,8 +34,10 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Escolha entre APP ESSENCIAL e APP PRO. Planos mensais, prazos claros e processo transparente.",
+          "Escolha entre APP ESSENCIAL e APP PRO. Pagamento único, prazos claros e processo transparente.",
       },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
   }),
   component: Index,
@@ -58,15 +74,6 @@ const essencialInclui = [
   "Botão de WhatsApp da sua barbearia",
 ];
 
-const proInclui = [
-  "Tudo do APP ESSENCIAL",
-  "Agenda para sua barbearia",
-  "Sistema de agendamento",
-  "Automação de WhatsApp",
-  "Configuração personalizada",
-  "Experiência mais completa para o cliente",
-];
-
 const comparacao: Array<[string, boolean, boolean]> = [
   ["App próprio", true, true],
   ["Sua marca", true, true],
@@ -98,11 +105,33 @@ const etapas = [
   },
 ];
 
+const faq = [
+  {
+    q: "Preciso entender de tecnologia?",
+    a: "Não. Você envia as informações da sua barbearia (logo, serviços, preços, fotos, localização) e nossa equipe cuida de toda a parte técnica.",
+  },
+  {
+    q: "Posso trocar de plano depois?",
+    a: "Sim. Se você começar no APP ESSENCIAL e depois quiser agenda e automação de WhatsApp, é possível evoluir para o APP PRO. Fale com a gente pelo WhatsApp para combinar os detalhes.",
+  },
+  {
+    q: "Como funciona o pagamento?",
+    a: "Os dois planos são de pagamento único: R$50 no APP ESSENCIAL e R$150 no APP PRO. O prazo de desenvolvimento começa após o recebimento das informações e materiais.",
+  },
+  {
+    q: "Existe fidelidade ou contrato?",
+    a: "Não há fidelidade. A contratação é do desenvolvimento do aplicativo, com o escopo do plano escolhido combinado antes de começar.",
+  },
+];
+
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="bg-background">
+      <ScrollProgress />
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-        <nav className="mx-auto flex h-12 max-w-5xl items-center justify-between px-6">
+        <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-5 sm:h-12 sm:px-6">
           <span className="text-sm font-semibold tracking-tight">TechBarbershop</span>
           <div className="hidden items-center gap-8 text-xs text-muted-foreground sm:flex">
             <a href="#exemplo" className="transition-colors hover:text-foreground">
@@ -118,42 +147,57 @@ function Index() {
               Processo
             </a>
           </div>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-primary px-3.5 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-85"
-          >
-            Falar conosco
-          </a>
+          <div className="flex items-center gap-1">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[40px] items-center rounded-full bg-primary px-4 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-85 sm:min-h-0 sm:px-3.5 sm:py-1.5"
+            >
+              Falar conosco
+            </a>
+            <MobileNav open={menuOpen} onOpenChange={setMenuOpen} whatsappHref={WHATSAPP} />
+          </div>
         </nav>
       </header>
 
-      <main>
+      <main className="pb-24 sm:pb-0">
         {/* HERO */}
-        <section className="bg-surface px-6 pt-20 pb-0 text-center">
+        <section className="bg-surface px-5 pt-12 pb-0 text-center sm:px-6 sm:pt-20">
           <div className="mx-auto max-w-3xl">
             <p className="eyebrow">TechBarbershop</p>
-            <h1 className="mt-3 text-5xl font-semibold tracking-tight sm:text-6xl">
+            <h1 className="mt-3 text-[2.1rem] leading-[1.1] font-semibold tracking-tight sm:text-6xl">
               O aplicativo da sua barbearia.
             </h1>
-            <p className="mt-5 text-xl text-muted-foreground sm:text-2xl">
+            <p className="mt-4 text-base text-muted-foreground sm:mt-5 sm:text-2xl">
               Presença digital própria, com as informações, os serviços e o WhatsApp da sua
-              barbearia. Planos mensais, prazos claros.
+              barbearia. Pagamento único, prazos claros.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3">
               <a
                 href="#planos"
-                className="rounded-full bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition-opacity hover:opacity-85"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-primary px-6 text-base font-medium text-primary-foreground transition-opacity hover:opacity-85 sm:min-h-0 sm:py-3"
               >
                 Ver planos
               </a>
-              <a href="#exemplo" className="text-base font-medium text-primary hover:underline">
+              <a
+                href="#exemplo"
+                className="inline-flex min-h-[48px] items-center justify-center text-base font-medium text-primary hover:underline"
+              >
                 Ver um app pronto ›
               </a>
             </div>
+
+            {/* PROVA SOCIAL */}
+            <a
+              href="#exemplo"
+              className="mt-6 inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border bg-background px-4 text-sm font-medium"
+            >
+              <span className="size-2 rounded-full bg-whatsapp" aria-hidden="true" />
+              Veja um app real que entregamos
+            </a>
           </div>
-          <Reveal className="mt-12">
+          <Reveal className="mt-10 sm:mt-12">
             <img
               src={heroApps}
               alt="Telas de um aplicativo de barbearia desenvolvido pela TechBarbershop"
@@ -165,14 +209,14 @@ function Index() {
         </section>
 
         {/* EXEMPLO — APP FEITO PELA MARCA */}
-        <section id="exemplo" className="px-6 py-24">
-          <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
+        <section id="exemplo" className="scroll-mt-16 px-5 py-14 sm:px-6 sm:py-24">
+          <div className="mx-auto grid max-w-5xl items-center gap-10 sm:gap-12 md:grid-cols-2">
             <div>
               <p className="eyebrow">Feito pela TechBarbershop</p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
                 Dom Barbearia
               </h2>
-              <p className="mt-5 text-lg text-muted-foreground">
+              <p className="mt-4 text-base text-muted-foreground sm:mt-5 sm:text-lg">
                 Um aplicativo real desenvolvido por nós: identidade da barbearia, lista de
                 serviços com preços, galeria de cortes, localização, contato e agendamento
                 direto pelo WhatsApp.
@@ -194,12 +238,12 @@ function Index() {
                 href="https://the-gentleman-rouge.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-block text-base font-medium text-primary hover:underline"
+                className="mt-7 inline-flex min-h-[44px] items-center text-base font-medium text-primary hover:underline sm:mt-8"
               >
                 Abrir o aplicativo da Dom Barbearia ›
               </a>
             </div>
-            <PhoneShowcase className="rounded-3xl bg-surface p-6">
+            <PhoneShowcase className="rounded-3xl bg-surface p-4 sm:p-6">
               <img
                 src={appShowcase}
                 alt="Aplicativo de barbearia desenvolvido pela TechBarbershop em um smartphone"
@@ -213,21 +257,21 @@ function Index() {
         </section>
 
         {/* PLANOS */}
-        <section id="planos" className="bg-surface px-6 py-24">
+        <section id="planos" className="scroll-mt-16 bg-surface px-5 py-14 sm:px-6 sm:py-24">
           <div className="mx-auto max-w-5xl">
             <div className="text-center">
               <p className="eyebrow">Pacotes</p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
                 Qual é o próximo passo da sua barbearia?
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
+              <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
                 Escolha o nível de aplicativo que faz sentido para o seu negócio.
               </p>
             </div>
 
-            <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            <div className="mt-10 grid gap-6 sm:mt-14 lg:grid-cols-2">
               {/* ESSENCIAL */}
-              <article className="surface-card flex flex-col p-8">
+              <article className="surface-card flex flex-col p-6 sm:p-8">
                 <span className="self-start rounded-full bg-accent px-3 py-1 text-xs font-semibold tracking-wide text-accent-foreground">
                   PARA COMEÇAR
                 </span>
@@ -235,7 +279,7 @@ function Index() {
                 <p className="mt-2 text-4xl font-semibold tracking-tight">R$ 50</p>
                 <p className="mt-1 text-sm font-semibold text-primary">PAGAMENTO ÚNICO</p>
 
-                <p className="mt-6 text-2xl font-semibold tracking-tight">
+                <p className="mt-6 text-xl font-semibold tracking-tight sm:text-2xl">
                   Quero ter meu próprio app.
                 </p>
                 <p className="mt-3 text-base text-muted-foreground">
@@ -276,7 +320,7 @@ function Index() {
                     href={waFor("APP ESSENCIAL")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full rounded-full border border-primary px-6 py-3 text-center text-base font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                    className="flex min-h-[52px] w-full items-center justify-center rounded-full border border-primary px-6 text-center text-base font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                   >
                     QUERO MEU APP
                   </a>
@@ -287,16 +331,16 @@ function Index() {
               </article>
 
               {/* PRO */}
-              <article className="surface-card relative flex flex-col overflow-hidden p-8 ring-1 ring-primary/40">
+              <article className="surface-card relative flex flex-col overflow-hidden p-6 ring-1 ring-primary/40 sm:p-8">
                 <div className="absolute inset-x-0 top-0 h-1 bg-primary" aria-hidden="true" />
                 <span className="self-start rounded-full bg-primary px-3 py-1 text-xs font-semibold tracking-wide text-primary-foreground">
                   MAIS COMPLETO
                 </span>
                 <h3 className="mt-5 text-2xl font-semibold">APP PRO</h3>
-                <p className="mt-2 text-5xl font-semibold tracking-tight sm:text-6xl">R$ 150</p>
+                <p className="mt-2 text-4xl font-semibold tracking-tight sm:text-6xl">R$ 150</p>
                 <p className="mt-1 text-sm font-semibold text-primary">PAGAMENTO ÚNICO</p>
 
-                <p className="mt-6 text-2xl font-semibold tracking-tight leading-snug">
+                <p className="mt-6 text-xl font-semibold tracking-tight leading-snug sm:text-2xl">
                   SEU CLIENTE GANHA PRATICIDADE.
                   <br />
                   VOCÊ GANHA TEMPO.
@@ -323,7 +367,7 @@ function Index() {
                   ))}
                 </ul>
 
-                <p className="mt-7 text-xl font-semibold tracking-tight leading-snug">
+                <p className="mt-7 text-lg font-semibold tracking-tight leading-snug sm:text-xl">
                   MENOS MENSAGENS.
                   <br />
                   MENOS INTERRUPÇÕES.
@@ -353,7 +397,7 @@ function Index() {
                     href={waFor("APP PRO")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full rounded-full bg-primary px-6 py-3 text-center text-base font-medium text-primary-foreground transition-opacity hover:opacity-85"
+                    className="flex min-h-[52px] w-full items-center justify-center rounded-full bg-primary px-6 text-center text-base font-medium text-primary-foreground transition-opacity hover:opacity-85"
                   >
                     QUERO FACILITAR MINHA ROTINA
                   </a>
@@ -367,11 +411,19 @@ function Index() {
         </section>
 
         {/* COMPARAÇÃO */}
-        <section id="comparacao" className="px-6 py-24">
+        <section id="comparacao" className="scroll-mt-16 px-5 py-14 sm:px-6 sm:py-24">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-center text-4xl font-semibold tracking-tight">Comparação</h2>
+            <h2 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl">
+              Comparação
+            </h2>
 
-            <div className="surface-card mt-10 overflow-hidden">
+            {/* Mobile */}
+            <div className="mt-8">
+              <ComparisonMobile rows={comparacao} />
+            </div>
+
+            {/* Desktop */}
+            <div className="surface-card mt-10 hidden overflow-hidden sm:block">
               <table className="w-full text-left text-base">
                 <thead>
                   <tr className="border-b border-border bg-surface">
@@ -407,18 +459,18 @@ function Index() {
                   </tr>
                   <tr className="bg-surface">
                     <td className="px-5 py-3.5 text-muted-foreground">Preço</td>
-                    <td className="px-5 py-3.5 text-center font-medium">R$ 50 / mês</td>
-                    <td className="px-5 py-3.5 text-center font-medium">R$ 150 / mês</td>
+                    <td className="px-5 py-3.5 text-center font-medium">R$ 50</td>
+                    <td className="px-5 py-3.5 text-center font-medium">R$ 150</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             {/* DIFERENÇA */}
-            <h3 className="mt-16 text-center text-3xl font-semibold tracking-tight">
+            <h3 className="mt-12 text-center text-2xl font-semibold tracking-tight sm:mt-16 sm:text-3xl">
               Qual é a diferença?
             </h3>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2">
               <div className="rounded-2xl bg-surface p-6">
                 <p className="text-sm font-semibold">APP ESSENCIAL</p>
                 <p className="mt-2 text-base text-muted-foreground">
@@ -432,11 +484,11 @@ function Index() {
                 </p>
               </div>
             </div>
-            <div className="mt-6 rounded-2xl bg-ink p-8 text-ink-foreground">
-              <p className="text-xl font-medium">
+            <div className="mt-6 rounded-2xl bg-ink p-6 text-ink-foreground sm:p-8">
+              <p className="text-lg font-medium sm:text-xl">
                 Se você quer começar com seu próprio app, o ESSENCIAL resolve.
               </p>
-              <p className="mt-3 text-xl font-medium">
+              <p className="mt-3 text-lg font-medium sm:text-xl">
                 Se você quer uma experiência mais completa para seus clientes, o PRO é para você.
               </p>
             </div>
@@ -444,26 +496,32 @@ function Index() {
         </section>
 
         {/* PRAZOS */}
-        <section className="bg-surface px-6 py-24">
+        <section className="bg-surface px-5 py-14 sm:px-6 sm:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl font-semibold tracking-tight">Prazo de desenvolvimento</h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              Prazo de desenvolvimento
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
               Os prazos são diferentes porque os projetos têm níveis diferentes de
               personalização.
             </p>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <div className="surface-card p-8">
+            <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
+              <div className="surface-card p-6 sm:p-8">
                 <p className="eyebrow">App Essencial</p>
-                <p className="mt-2 text-3xl font-semibold tracking-tight">1 a 4 dias</p>
+                <p className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  1 a 4 dias
+                </p>
                 <p className="mt-2 text-sm text-muted-foreground">Prazo estimado.</p>
               </div>
-              <div className="surface-card p-8">
+              <div className="surface-card p-6 sm:p-8">
                 <p className="eyebrow">App Pro</p>
-                <p className="mt-2 text-3xl font-semibold tracking-tight">1 a 3 semanas</p>
+                <p className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  1 a 3 semanas
+                </p>
                 <p className="mt-2 text-sm text-muted-foreground">Prazo estimado.</p>
               </div>
             </div>
-            <p className="mt-8 text-base text-muted-foreground">
+            <p className="mt-7 text-base text-muted-foreground sm:mt-8">
               O prazo começa após o recebimento das informações e materiais necessários para a
               criação do aplicativo. Todos os prazos informados são estimados e podem variar
               conforme o envio das informações e a personalização necessária.
@@ -472,15 +530,15 @@ function Index() {
         </section>
 
         {/* PROCESSO */}
-        <section id="processo" className="px-6 py-24">
+        <section id="processo" className="scroll-mt-16 px-5 py-14 sm:px-6 sm:py-24">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-center text-4xl font-semibold tracking-tight">
+            <h2 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl">
               O que acontece depois da contratação
             </h2>
-            <ol className="mt-12 space-y-4">
+            <ol className="mt-8 space-y-4 sm:mt-12">
               {etapas.map((e, i) => (
                 <li key={e.n}>
-                  <div className="surface-card p-7">
+                  <div className="surface-card p-6 sm:p-7">
                     <p className="eyebrow">
                       {e.n} — {e.t}
                     </p>
@@ -497,34 +555,36 @@ function Index() {
           </div>
         </section>
 
-        {/* CTA FINAL */}
-        <section className="bg-surface px-6 py-24">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-4xl font-semibold tracking-tight">
-              Ainda não sabe qual escolher?
+        {/* FAQ */}
+        <section id="faq" className="scroll-mt-16 bg-surface px-5 py-14 sm:px-6 sm:py-24">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl">
+              Dúvidas comuns
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Fale com a TechBarbershop e explique como funciona sua barbearia. Nós podemos te
-              orientar sobre qual opção faz mais sentido para o seu momento.
-            </p>
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-block rounded-full bg-whatsapp px-7 py-3.5 text-base font-medium text-whatsapp-foreground transition-opacity hover:opacity-85"
-            >
-              FALAR COM A TECHBARBERSHOP
-            </a>
+            <Accordion type="single" collapsible className="mt-8 w-full">
+              {faq.map((f) => (
+                <AccordionItem key={f.q} value={f.q}>
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-base text-muted-foreground">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border px-6 py-10">
+      <footer className="border-t border-border px-5 py-8 sm:px-6 sm:py-10">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} TechBarbershop.</p>
-          <p>Planos mensais. Prazos estimados.</p>
+          <p>Pagamento único. Prazos estimados.</p>
         </div>
       </footer>
+
+      <StickyWhatsApp href={WHATSAPP} hidden={menuOpen} />
     </div>
   );
 }
