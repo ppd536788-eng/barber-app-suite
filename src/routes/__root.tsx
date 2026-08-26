@@ -94,8 +94,7 @@ head: () => ({
     { property: "og:image", content: "https://techbarber.vercel.app/og-image.jpg" },
     { property: "og:locale", content: "pt_BR" },
     { name: "twitter:card", content: "summary_large_image" },
-     { meta :"google-site-verification",content:"TZVnqjwbdLpgIKxD7qKbgDNwsxp0u_NSWeTqKhsEK9Y"},
-  ],
+{ name: "google-site-verification", content: "TZVnqjwbdLpgIKxD7qKbgDNwsxp0u_NSWeTqKhsEK9Y" },  ],
   links: [
     { rel: "stylesheet", href: appCss },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
