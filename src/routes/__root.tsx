@@ -94,6 +94,7 @@ head: () => ({
     { property: "og:image", content: "https://techbarber.vercel.app/og-image.jpg" },
     { property: "og:locale", content: "pt_BR" },
     { name: "twitter:card", content: "summary_large_image" },
+     { meta :"google-site-verification",content:"TZVnqjwbdLpgIKxD7qKbgDNwsxp0u_NSWeTqKhsEK9Y"},
   ],
   links: [
     { rel: "stylesheet", href: appCss },
@@ -105,6 +106,7 @@ head: () => ({
     },
     { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     { rel: "canonical", href: "https://techbarber.vercel.app/" },
+
   ],
 }),
   shellComponent: RootShell,
